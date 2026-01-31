@@ -1,5 +1,5 @@
-export function Button({ children, className }) {
-  return <button className={className}>{children}</button>;
+export function Button({ children, className, onClick, ...props }) {
+  return <button className={className} onClick={onClick} {...props}>{children}</button>;
 }
 
 export function Card({ children, className }) {

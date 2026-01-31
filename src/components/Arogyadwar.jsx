@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useTextAnimation, useViewportTextAnimation } from "./useTextAnimation";
 import Header from "./Header";
 import HomeSection from "./HomeSection";
+import Chatbot from "./Chatbot";
 import { useNavigate } from "react-router-dom";  // ADD THIS IMPORT
 
 const ANIMATION_CONSTANTS = {
@@ -32,6 +33,7 @@ export default function Arogyadwar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [headerColor, setHeaderColor] = useState(COLORS.HEADER_DEFAULT);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isChatbotOpen, setIsChatbotOpen] = useState(false);
   const navigate = useNavigate();  // ADD THIS HOOK
 
   const fullText = TEXT_CONTENT.WELCOME;
@@ -196,7 +198,12 @@ export default function Arogyadwar() {
               <Bot className="p-2 mb-3 text-green-600 transition-transform duration-300 group-hover:scale-125 group-hover:bg-green-100 group-hover:rounded-full" size={36} />
               <h2 className="mb-4 text-xl font-semibold">AI Chat Assistance</h2>
               <p className="mb-6 text-gray-600">Get instant medical help from our AI assistant.</p>
-              <Button className="px-6 py-3 text-white transition duration-300 ease-in-out rounded-lg shadow-md bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 hover:shadow-lg hover:drop-shadow-[0_0_10px_rgba(22,163,74,0.7)]">Chat Now</Button>
+              <Button
+                onClick={() => setIsChatbotOpen(true)}
+                className="px-6 py-3 text-white transition duration-300 ease-in-out rounded-lg shadow-md bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 hover:shadow-lg hover:drop-shadow-[0_0_10px_rgba(22,163,74,0.7)]"
+              >
+                Chat Now
+              </Button>
             </CardContent>
           </Card>
         </section>
@@ -205,6 +212,11 @@ export default function Arogyadwar() {
       <footer className="py-4 text-sm text-center text-gray-600 bg-gray-100">
         © {new Date().getFullYear()} Arogyadwar. All rights reserved.
       </footer>
+
+      <Chatbot
+        isOpen={isChatbotOpen}
+        onClose={() => setIsChatbotOpen(false)}
+      />
     </div>
   );
 }
